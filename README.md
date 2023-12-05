@@ -18,33 +18,33 @@ Visualizing Grab Jakarta trajectories as a step of data understanding for *Next 
 **Example:**
 
 ```bash
-$ curl http://localhost:3000/api/trajectories/69
+$ curl http://localhost:3000/api/trajectories/69 --request "GET"
 
 {
-	"message":"success",
-	"bundle": {
-		"trajectory": {
-			"id":69,
-			"codename":"trj69",
-			"started_at":"2019-04-11T23:27:48.000Z",
-			"ended_at":"2019-04-11T23:33:20.000Z"
-			},
-			"points": [
-				{
-					"id":7505,
-					"trj_id":69,
-					"driving_mode":"motorcycle",
-					"osname":"ios",
-					"pingtimestamp":"2019-04-11T23:27:48.000Z",
-					"rawlat":-6.228238,
-					"rawlng":106.91619,
-					"speed":5.54,
-					"bearing":13,
-					"accuracy":5
-				},
-				...
-			]
-	}
+  "message":"success",
+  "bundle": {
+    "trajectory": {
+      "id":69,
+      "codename":"trj69",
+      "started_at":"2019-04-11T23:27:48.000Z",
+      "ended_at":"2019-04-11T23:33:20.000Z"
+      },
+      "points": [
+        {
+          "id":7505,
+          "trj_id":69,
+          "driving_mode":"motorcycle",
+          "osname":"ios",
+          "pingtimestamp":"2019-04-11T23:27:48.000Z",
+          "rawlat":-6.228238,
+          "rawlng":106.91619,
+          "speed":5.54,
+          "bearing":13,
+          "accuracy":5
+        },
+        ...
+      ]
+  }
 }
 ```
 withoud the indentation 😔
@@ -52,5 +52,10 @@ withoud the indentation 😔
 ### `🔬Next Spatio-Temporal Prediction`
 🚧
 
-### `🎯 Deployment`
+### `🎯Deployment`
 🚧
+
+### `🔜What's next?`
+- [x] Data bundling (trajectory, points, error)
+- [ ] Status code
+- [ ] Trajectory list endpoint
