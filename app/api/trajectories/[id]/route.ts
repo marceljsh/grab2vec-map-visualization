@@ -1,7 +1,7 @@
-import { pool } from "@/app/helpers/helper";
-import Ping from "@/app/interfaces/Ping";
-import Trajectory from "@/app/interfaces/Trajectory";
-import { NextResponse } from "next/server";
+import { pool } from '@/lib/helper'
+import Ping from '@/interfaces/Ping'
+import Trajectory from '@/interfaces/Trajectory'
+import { NextResponse } from 'next/server'
 
 export const GET = async (
   request: Request,
@@ -15,7 +15,7 @@ export const GET = async (
 
     if (trajectories.length == 0) {
       return NextResponse.json(
-        { message: "failed", bundle: { error: new Error("record not found") } },
+        { message: 'failed', bundle: { error: new Error('record not found') } },
         { status: 404 }
       );
     }
@@ -26,10 +26,10 @@ export const GET = async (
     );
 
     return NextResponse.json(
-      { message: "success", bundle: { trajectory, points } },
+      { message: 'success', bundle: { trajectory, points } },
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ message: "failed", error }, { status: 500 });
+    return NextResponse.json({ message: 'failed', error }, { status: 500 });
   }
 };
