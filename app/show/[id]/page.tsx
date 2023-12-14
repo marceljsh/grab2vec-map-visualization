@@ -1,14 +1,24 @@
 'use client'
-
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Atlas from '@/components/Atlas'
-import APIData from '@/interfaces/APIData'
 import { calculateAvgSpeed, calculateDistance } from '@/lib/calculation'
 
-export default function ShowIdPage() {
+async function getData(id: string) {
+  const res = await fetch(
+		`${process.env.NEXT_PUBLIC_APP_URL}/api/trajectories/${id}`
+	);
+
+	if (!res.ok) {
+		return { error: true }
+	}
+
+	return res.json()
+}
+
+export default async function ShowIdPage() {
   const { id } = useParams()
-  const [data, setData] = useState<APIData>()
+  const data = await getData(id as string)
 
   const [inputId, setInputId] = useState<string>('')
 
@@ -16,19 +26,9 @@ export default function ShowIdPage() {
     e.preventDefault()
   }
 
-  useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/trajectories/${id}`)
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.message === 'failed') {
-          return <h1 className='text-white'>ERROR FROM API</h1>;
-        }
-        setData(result);
-      });
-  }, []);
 
-  if (data == null) {
-    return <h1 className='text-white'>DATA IS NULL</h1>;
+  if (data.error) {
+    return <h1 className='text-white'>ERROR FETCHING DATA</h1>;
   }
 
   if (data.bundle.points === undefined) {
