@@ -15,17 +15,21 @@ const toTimestamp = (ping: number) => {
   return humanReadableTimestamp
 }
 
-export default function Atlas({ data }: { data: Trip[] | null }) {
-  let markers;
-  let lat, lon;
+export default function Atlas({ data }: { data: Trip[] }) {
+  let markers
+  let lat, lon
 
-  if (data == null) {
+  if (data[0] === null || data[0] === undefined) {
     lat = -6.175275008381671
     lon = 106.82713648066166
+
   } else {
+
     const initial: Ping = data[0].points[0]
+
     lat = initial.lat
     lon = initial.lon
+
     markers = data.map((trip: Trip) =>
       trip.points.map((point: Ping) => (
         <Marker key={point.id} position={[point.lat, point.lon]} icon={Emblem}>

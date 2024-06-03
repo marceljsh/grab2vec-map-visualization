@@ -1,4 +1,4 @@
-import Ping from "@/app/interfaces/Ping";
+import Ping from "@/interfaces/Ping";
 
 export function calculateAvgSpeed(points: Ping[]): number {
   let totalSpeed = 0;
@@ -12,10 +12,10 @@ export function calculateDistance(points: Ping[]): number {
   let distance = 0;
   for (let i = 0; i < points.length - 1; i++) {
     distance += haversine(
-      points[i].rawlat,
-      points[i].rawlng,
-      points[i + 1].rawlat,
-      points[i + 1].rawlng
+      points[i].lat,
+      points[i].lon,
+      points[i + 1].lat,
+      points[i + 1].lon
     );
   }
   return distance;

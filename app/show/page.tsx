@@ -1,36 +1,36 @@
-import Atlas from '@/components/Atlas'
+// import Atlas from '@/components/Atlas'
+import { useState } from 'react';
 
-async function getData() {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_APP_URL}/api/trajectories/69`
-	);
+// async function getData() {
+// 	const res = await fetch(
+// 		`${process.env.NEXT_PUBLIC_APP_URL}/api/trajectories/69`
+// 	);
+// 	const data = await res.json()
 
-	if (!res.ok) {
-		return { error: true }
-	}
+// 	if (data.message === 'failed') {
+// 		return { error: true }
+// 	}
 
-	return res.json()
-}
+// 	return data
+// }
 
 export default async function ShowPage() {
-	const data = await getData()
+	// const data = await getData()
+	// const bundle = data?.error ? [null] : data.bundle
 
-	if (data?.error) {
-		return (
-			<section className='min-h-full flex flex-col items-center'>
-				<div className='justify-center items-center'>
-					<Atlas data={null} />
-				</div>
-				<h1 className="text-white mt-5">no data displayed</h1>
-			</section>
-		)
-	}
+	// const [inputId, setInputId] = useState<string>('')
 
 	return (
 		<section className='min-h-full flex flex-col items-center'>
 			<div className='justify-center items-center'>
-				<Atlas data={[data.bundle]} />
+			{/* <Atlas data={bundle} /> */}
 			</div>
+			{/* {data?.error && <h1 className="text-white mt-5">no data displayed</h1>} */}
+
+			{/* <p className="text-white">{inputId}</p> */}
+			{/* <div className="">
+				<input type="number" onChange={(e) => setInputId(e.target.value)}/>
+			</div> */}
 		</section>
 	)
 }
